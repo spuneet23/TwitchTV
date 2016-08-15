@@ -1,0 +1,52 @@
+/*=== GENERAL ===*/
+
+@font-face {
+  font-family: 'SEGOEUIL';
+  src: local('SEGOEUIL'), url('../fonts/SEGOEUIL.ttf') format('truetype');
+}
+
+/*-- To make right white space in mobile --*/
+
+/*=== GLOBAL ===*/
+
+
+
+.top {
+	background: #777;
+	color:white;
+}
+
+img {
+	border-radius: 50%;
+	height: 40px;
+	width:40px;
+}
+
+.row {
+	margin-top:5px;
+	
+}
+
+.row .overall{
+	padding:10px;
+  background:#4A5E82;
+  color:white;
+}
+
+.col-md-3.name {
+	color:white;
+}
+
+.status {
+  color:white;
+
+}
+
+.overall.online {
+	background:#B8CCA6;
+}
+
+a ,a:hover,a:focus{
+	color:white;
+	text-decoration: none;
+}

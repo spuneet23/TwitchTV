@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>TwitchTV</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+<!-- Bootstrap -->  
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Google fonts  -->
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<!-- custom css -->
+<link href="assets/css/twitch.css" rel="stylesheet">
+
+<!-- fontawesome icons -->
+<link href="assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container main">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 top">
+      <h1 class="text-center">TWITCH STREAMERS</h1>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- BOOTSTRAP CORE JAVASCRIPT
+Placed at the bottom for loading pages faster-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script>
+var arr=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+var logo;
+var name;
+var url;
+for(var i=0;i<arr.length;i++) {
+
+
+    $.getJSON('https://api.twitch.tv/kraken/channels/'+arr[i]+'?callback=?', function(data) {
+     // console.log(data);
+      name=data.display_name;
+      logo=data.logo;
+      url=data.url;
+       // console.log(name+" "+logo);
+
+    $('.main').append('<div class="row">'+
+                       '<div class="col-md-8 col-md-offset-2 overall">'+
+                          '<div class="col-md-2 logo">'+
+                            '<img src="'+logo+'" />'+
+                          '</div>'+
+                          '<div class="col-md-4 name">'+
+                             '<a href="'+url+'" target="_blank" <h4>'+name+'</h4></a>'+
+                          '</div>'+
+                           '<div class="col-md-6 status">'+
+                             '<h4>Offline</h4>'+
+                          '</div>'+
+                        '</div>'+
+                      '</div>'
+                      );
+
+
+});
+
+  $.getJSON('https://api.twitch.tv/kraken/streams/'+arr[i]+'?callback=?', function(res) {
+   // if(res.streams==null) {
+     console.log(res);
+   
+     if(res.stream!=null) {
+        var status=res.stream.channel['status'];
+         var game = res['stream'].game;
+       $('.status').html('');
+       $('.status').append('<h4>'+game+' :'+status+'</h4>');
+       $('.overall').addClass('online');
+     }
+
+   // }
+     $()
+  });
+
+}
+
+</script>
+
+
+
+ </body>
+ </html>
